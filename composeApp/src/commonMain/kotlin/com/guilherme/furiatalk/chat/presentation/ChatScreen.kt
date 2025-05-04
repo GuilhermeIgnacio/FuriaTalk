@@ -32,7 +32,7 @@ fun ChatScreen(viewModel: ChatViewModel) {
         Column(modifier = Modifier.padding(padding).navigationBarsPadding()) {
             LazyColumn(
                 modifier = Modifier.weight(1f),
-                reverseLayout = true // New messages at the bottom
+                reverseLayout = false // New messages at the bottom
             ) {
                 items(messages) { message ->
                     ChatItem(message = message)
@@ -45,16 +45,3 @@ fun ChatScreen(viewModel: ChatViewModel) {
         }
     }
 }
-
-// Theme for WhatsApp look
-/*
-@Composable
-fun WhatsAppCloneTheme(content: @Composable () -> Unit) {
-    MaterialTheme(
-        colorScheme = lightColors(
-            primary = Color(0xFF075E54),
-            background = Color(0xFFE5DDD5)
-        ),
-        content = content
-    )
-}*/

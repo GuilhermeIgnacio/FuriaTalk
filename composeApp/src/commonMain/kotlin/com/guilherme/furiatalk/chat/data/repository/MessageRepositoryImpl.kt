@@ -51,7 +51,7 @@ class MessageRepositoryImpl(
                     messageQueries.insert(message = userMessage, isFromUser = 1)
 
                     messageQueries.insert(
-                        message = "Error Getting Response from api",
+                        message = "Erro ao obter resposta. Por favor, envie sua mensagem novamente ou reinicie o aplicativo e tente novamente",
                         isFromUser = 0
                     )
                 }
