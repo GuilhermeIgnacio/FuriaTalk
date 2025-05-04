@@ -35,6 +35,7 @@ fun ChatBox(
     ) {
         TextField(
             value = state.chatTextField ?: "",
+            enabled = !state.isLoading,
             onValueChange = { onEvent(ChatEvents.OnChatTextFieldValueChanged(it)) },
             placeholder = { Text("Mensagem") },
             modifier = Modifier

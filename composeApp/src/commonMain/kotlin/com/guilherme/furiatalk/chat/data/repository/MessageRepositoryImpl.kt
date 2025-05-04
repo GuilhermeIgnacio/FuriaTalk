@@ -31,7 +31,6 @@ class MessageRepositoryImpl(
 
     override suspend fun sendMessage(userMessage: String) {
 
-
         when (val result = geminiService.generateMessage(userMessage)) {
             is Result.Success -> {
 

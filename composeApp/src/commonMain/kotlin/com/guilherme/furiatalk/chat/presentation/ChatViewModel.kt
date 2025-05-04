@@ -11,7 +11,8 @@ import kotlinx.coroutines.launch
 
 data class ChatState(
     val chatTextField: String? = null,
-    val messages: List<Message> = emptyList()
+    val messages: List<Message> = emptyList(),
+    val isLoading: Boolean = false
 )
 
 sealed interface ChatEvents {
@@ -22,21 +23,6 @@ sealed interface ChatEvents {
 class ChatViewModel(
     private val messageRepository: MessageRepository
 ) : ViewModel() {
-    /*private val _messages = MutableStateFlow<List<Message>>(emptyList())
-    val messages: StateFlow<List<Message>> = _messages
-
-    fun sendMessage(text: String) {
-        val newMessage = Message(text = text, isFromMe = true)
-        _messages.value = _messages.value + newMessage
-    }
-
-    init {
-        // Simulate initial messages
-        _messages.value = listOf(
-            Message("Hello!", isFromMe = false),
-            Message("Hi there!", isFromMe = true)
-        )
-    }*/
 
     private val _state = MutableStateFlow(ChatState())
     val state = _state.asStateFlow()
@@ -67,12 +53,15 @@ class ChatViewModel(
 
                 val chatTextField = _state.value.chatTextField
 
+                _state.update { it.copy(isLoading = true, chatTextField = null) }
                 viewModelScope.launch {
 
                     if (!chatTextField.isNullOrEmpty()) {
                         messageRepository.sendMessage(chatTextField)
                     }
 
+                }.invokeOnCompletion {
+                    _state.update { it.copy(isLoading = false) }
                 }
 
             }
