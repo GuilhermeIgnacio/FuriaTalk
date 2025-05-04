@@ -2,9 +2,9 @@ package com.guilherme.furiatalk.chat.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.guilherme.furiatalk.chat.data.api.model.Message
 import com.guilherme.furiatalk.chat.domain.MessageRepository
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch

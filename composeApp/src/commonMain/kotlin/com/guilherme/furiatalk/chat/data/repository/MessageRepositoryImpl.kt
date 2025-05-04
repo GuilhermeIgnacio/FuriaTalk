@@ -1,13 +1,11 @@
 package com.guilherme.furiatalk.chat.data.repository
 
-import androidx.compose.ui.util.fastCbrt
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
 import com.guilherme.Database
 import com.guilherme.furiatalk.chat.data.local.DriverFactory
 import com.guilherme.furiatalk.chat.domain.GeminiService
 import com.guilherme.furiatalk.chat.domain.MessageRepository
-import com.guilherme.furiatalk.chat.presentation.Message
 import com.guilherme.furiatalk.core.domain.Result
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO

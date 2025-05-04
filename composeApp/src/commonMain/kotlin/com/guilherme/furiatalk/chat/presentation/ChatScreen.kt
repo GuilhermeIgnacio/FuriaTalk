@@ -1,11 +1,11 @@
 package com.guilherme.furiatalk.chat.presentation
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -14,10 +14,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.guilherme.furiatalk.chat.presentation.components.ChatBox
 import com.guilherme.furiatalk.chat.presentation.components.ChatItem
-
-
-// Data class for messages
-data class Message(val text: String, val isFromMe: Boolean)
 
 @Composable
 fun ChatScreen(viewModel: ChatViewModel) {
@@ -29,10 +25,9 @@ fun ChatScreen(viewModel: ChatViewModel) {
     Scaffold(
         containerColor = Color(0xff0b141a)
     ) { padding ->
-        Column(modifier = Modifier.padding(padding).navigationBarsPadding()) {
+        Column(modifier = Modifier.statusBarsPadding().navigationBarsPadding().imePadding()) {
             LazyColumn(
                 modifier = Modifier.weight(1f),
-                reverseLayout = false // New messages at the bottom
             ) {
                 items(messages) { message ->
                     ChatItem(message = message)
