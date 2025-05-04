@@ -33,6 +33,13 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+
+            //SqlDelight
+            implementation("app.cash.sqldelight:android-driver:2.0.2")
+
+            //SplashScreen
+            implementation("androidx.core:core-splashscreen:1.0.1")
+
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -46,6 +53,30 @@ kotlin {
 
             //ViewModel
             implementation("org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose:2.8.2")
+
+            //Koin
+            implementation(project.dependencies.platform(libs.koin.bom))
+            implementation(libs.koin.core)
+            implementation("io.insert-koin:koin-compose-viewmodel")
+            implementation("io.insert-koin:koin-android")
+
+            //Ktor
+            val ktor_version= "3.1.2"
+            implementation("io.ktor:ktor-client-core:$ktor_version")
+            implementation("io.ktor:ktor-client-cio:$ktor_version")
+            implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
+            implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
+
+            //Serialization
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
+
+            //Google Fonts
+            implementation("androidx.compose.ui:ui-text-google-fonts:1.8.0")
+
+            //SqlDelight
+            implementation("app.cash.sqldelight:sqlite-driver:2.0.2")
+            implementation("app.cash.sqldelight:coroutines-extensions:2.0.2")
+
         }
     }
 }
