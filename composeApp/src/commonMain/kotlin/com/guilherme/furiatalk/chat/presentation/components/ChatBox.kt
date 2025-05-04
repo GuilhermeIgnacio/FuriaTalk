@@ -21,11 +21,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.guilherme.furiatalk.chat.presentation.ChatEvents
+import com.guilherme.furiatalk.chat.presentation.ChatState
 
 // Composable for input field
 @Composable
-fun ChatBox(onSend: (String) -> Unit) {
-    var text by remember { mutableStateOf("") }
+fun ChatBox(
+    state: ChatState,
+    onEvent: (ChatEvents) -> Unit
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -33,8 +37,8 @@ fun ChatBox(onSend: (String) -> Unit) {
         verticalAlignment = Alignment.CenterVertically
     ) {
         TextField(
-            value = text,
-            onValueChange = { text = it },
+            value = state.chatTextField ?: "",
+            onValueChange = { onEvent(ChatEvents.OnChatTextFieldValueChanged(it)) },
             placeholder = { Text("Type a message") },
             modifier = Modifier
                 .weight(1f)
@@ -47,12 +51,7 @@ fun ChatBox(onSend: (String) -> Unit) {
                 placeholderColor = Color.White
             )
         )
-        IconButton(onClick = {
-            if (text.isNotEmpty()) {
-                onSend(text)
-                text = ""
-            }
-        }) {
+        IconButton(onClick = { onEvent(ChatEvents.OnSubmitMessageButtonClicked) }) {
             Icon(Icons.Default.Send, contentDescription = "Send", tint = Color(0xFF075E54))
         }
     }
