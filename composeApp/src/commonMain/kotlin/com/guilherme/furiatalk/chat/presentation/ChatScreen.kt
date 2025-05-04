@@ -5,11 +5,9 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
-import androidx.compose.material.lightColors
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,7 +27,7 @@ fun ChatScreen(viewModel: ChatViewModel) {
 
     val messages = state.messages
     Scaffold(
-        backgroundColor = Color(0xff0b141a)
+        containerColor = Color(0xff0b141a)
     ) { padding ->
         Column(modifier = Modifier.padding(padding).navigationBarsPadding()) {
             LazyColumn(
@@ -49,13 +47,14 @@ fun ChatScreen(viewModel: ChatViewModel) {
 }
 
 // Theme for WhatsApp look
+/*
 @Composable
 fun WhatsAppCloneTheme(content: @Composable () -> Unit) {
     MaterialTheme(
-        colors = lightColors(
+        colorScheme = lightColors(
             primary = Color(0xFF075E54),
             background = Color(0xFFE5DDD5)
         ),
         content = content
     )
-}
+}*/

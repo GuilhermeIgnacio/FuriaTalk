@@ -5,13 +5,13 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Send
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -43,12 +43,15 @@ fun ChatBox(
             modifier = Modifier
                 .weight(1f)
                 .background(Color.White, RoundedCornerShape(24.dp)),
-            colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color(0xFF1E1E1E),
+            colors = TextFieldDefaults.colors().copy(
+                unfocusedContainerColor = Color(0xFF1E1E1E),
+                focusedContainerColor = Color(0xFF1E1E1E),
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
-                textColor = Color.White,
-                placeholderColor = Color.White
+                unfocusedTextColor = Color.White,
+                focusedTextColor = Color.White,
+                unfocusedPlaceholderColor = Color.White,
+                focusedPlaceholderColor = Color.White
             )
         )
         IconButton(onClick = { onEvent(ChatEvents.OnSubmitMessageButtonClicked) }) {

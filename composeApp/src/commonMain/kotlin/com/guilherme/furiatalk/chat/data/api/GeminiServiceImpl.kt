@@ -6,18 +6,18 @@ import com.guilherme.furiatalk.chat.data.api.model.Content
 import com.guilherme.furiatalk.chat.data.api.model.Part
 import com.guilherme.furiatalk.chat.data.api.model.SystemInstruction
 import com.guilherme.furiatalk.chat.domain.GeminiService
-import com.guilherme.furiatalk.chat.presentation.Message
 import com.guilherme.furiatalk.core.domain.GeminiError
 import com.guilherme.furiatalk.core.domain.Result
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.request.header
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.http.ContentType
+import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
-import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
@@ -32,7 +32,6 @@ class GeminiServiceImpl : GeminiService {
     private val client = HttpClient(CIO) {
         install(ContentNegotiation) {
             json(Json {
-                prettyPrint = true
                 ignoreUnknownKeys = true
             })
         }
@@ -57,7 +56,7 @@ class GeminiServiceImpl : GeminiService {
         return try {
 
             val response = client.post(GEMINI_API_ENDPOINT + API_KEY) {
-                contentType(ContentType.Application.Json)
+                header(HttpHeaders.ContentType, ContentType.Application.Json)
                 setBody(requestBody)
             }
 

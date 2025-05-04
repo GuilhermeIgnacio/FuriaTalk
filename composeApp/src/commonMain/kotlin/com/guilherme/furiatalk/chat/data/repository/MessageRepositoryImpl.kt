@@ -33,17 +33,28 @@ class MessageRepositoryImpl(
 
     override suspend fun sendMessage(userMessage: String) {
 
-        messageQueries.insert(message = userMessage, isFromUser = 1)
 
-        when(val result = geminiService.generateMessage(userMessage)){
+        when (val result = geminiService.generateMessage(userMessage)) {
             is Result.Success -> {
 
-                val message = result.data.candidates.get(0).content.parts[0].text
+                database.transaction {
+                    messageQueries.insert(message = userMessage, isFromUser = 1)
 
-                messageQueries.insert(message = message, isFromUser = 0)
+                    val message = result.data.candidates.get(0).content.parts[0].text
+
+                    messageQueries.insert(message = message, isFromUser = 0)
+                }
             }
+
             is Result.Error -> {
-                messageQueries.insert(message = "Error Getting Response from api", isFromUser = 0)
+                database.transaction {
+                    messageQueries.insert(message = userMessage, isFromUser = 1)
+
+                    messageQueries.insert(
+                        message = "Error Getting Response from api",
+                        isFromUser = 0
+                    )
+                }
             }
         }
 
