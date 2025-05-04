@@ -26,7 +26,7 @@ class GeminiServiceImpl : GeminiService {
     companion object {
         const val GEMINI_API_ENDPOINT =
             "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key="
-        const val API_KEY = "AIzaSyB_leTvK73iJt24MvgPo7f7ur1XDeNE1uw"
+        const val API_KEY = "AIzaSyBfK8joPgl_T8K9l3QBbCHkH5hSuck6Ni4"
     }
 
     private val client = HttpClient(CIO) {
