@@ -18,14 +18,13 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 import furiatalk.composeapp.generated.resources.Res
 import furiatalk.composeapp.generated.resources.compose_multiplatform
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 @Preview
 fun App() {
     MaterialTheme {
-
-        val viewModel = viewModel { ChatViewModel() }
-
-        ChatScreen()
+        val viewModel = koinViewModel<ChatViewModel>()
+        ChatScreen(viewModel = viewModel)
     }
 }

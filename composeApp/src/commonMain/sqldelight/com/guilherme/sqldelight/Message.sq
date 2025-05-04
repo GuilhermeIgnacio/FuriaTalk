@@ -1,0 +1,9 @@
+CREATE TABLE message(
+    id INTEGER PRIMARY KEY NOT NULL,
+    message TEXT NOT NULL,
+    isFromUser INTEGER NOT NULL
+);
+
+selectAll: SELECT * FROM message;
+
+insert: INSERT INTO message (message, isFromUser) VALUES (?, ?);

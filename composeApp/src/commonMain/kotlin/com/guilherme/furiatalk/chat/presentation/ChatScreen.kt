@@ -13,7 +13,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.guilherme.furiatalk.chat.presentation.components.ChatBox
 import com.guilherme.furiatalk.chat.presentation.components.ChatItem
 
@@ -22,7 +21,7 @@ import com.guilherme.furiatalk.chat.presentation.components.ChatItem
 data class Message(val text: String, val isFromMe: Boolean)
 
 @Composable
-fun ChatScreen(viewModel: ChatViewModel = viewModel()) {
+fun ChatScreen(viewModel: ChatViewModel) {
     val messages by viewModel.messages.collectAsState()
     Scaffold(
         backgroundColor = Color(0xff0b141a)
